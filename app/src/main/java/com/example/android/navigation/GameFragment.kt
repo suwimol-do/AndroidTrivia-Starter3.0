@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.android.navigation.databinding.FragmentGameBinding
+import androidx.navigation.findNavController
 
 class GameFragment : Fragment() {
     data class Question(
@@ -98,9 +99,13 @@ class GameFragment : Fragment() {
                         setQuestion()
                         binding.invalidateAll()
                     } else {
+                        view.findNavController()
+                                .navigate(R.id.action_gameFragment_to_gameWonFragment)
                         // We've won!  Navigate to the gameWonFragment.
                     }
                 } else {
+                    view.findNavController().
+                    navigate(R.id.action_gameFragment_to_gameOverFragment)
                     // Game over! A wrong answer sends us to the gameOverFragment.
                 }
             }
